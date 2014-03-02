@@ -1,6 +1,6 @@
 # Jfit
 
-TODO: Write a gem description
+A JRuby library for parsing FIT files. Uses the http://thisisant.com FIT SDK.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Don't use this, it's a total work in progress.
 
 ## Contributing
 
