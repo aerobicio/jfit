@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/repos/531290cfe30ba021d600edbf/badges/c03134ddc28ced9fdeff/gpa.png)](https://codeclimate.com/repos/531290cfe30ba021d600edbf/feed)
+
 # Jfit
 
 A JRuby library for parsing FIT files. Uses the http://thisisant.com FIT SDK.
