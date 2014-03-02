@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{A JRuby library for parsing FIT files. Uses the http://thisisant.com FIT SDK.}
   spec.homepage      = ""
   spec.license       = "MIT"
+  spec.platform      = "java"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
