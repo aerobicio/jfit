@@ -39,22 +39,21 @@ class FileID
 
   java_signature 'void onMesg(Java::ComGarminFit::FileIdMesg)'
   def onMesg(message)
-    if message.get_type != nil && message.getType != Java::ComGarminFit::File::INVALID
+    if !message.get_type.nil? && message.getType != Java::ComGarminFit::File::INVALID
       @type = message.get_type.get_value
     end
 
-    if message.get_manufacturer != nil && message.get_manufacturer != Java::ComGarminFit::Manufacturer::INVALID
+    if !message.get_manufacturer.nil? && message.get_manufacturer != Java::ComGarminFit::Manufacturer::INVALID
       @manufacturer = message.get_manufacturer
     end
 
-    if message.get_product != nil && message.get_product != Java::ComGarminFit::Fit::UINT16_INVALID
+    if !message.get_product.nil? && message.get_product != Java::ComGarminFit::Fit::UINT16_INVALID
       @product = message.get_product
     end
 
-    if message.get_serial_number != nil && message.get_serial_number != Java::ComGarminFit::Fit::UINT32Z_INVALID
+    if !message.get_serial_number.nil? && message.get_serial_number != Java::ComGarminFit::Fit::UINT32Z_INVALID
       @serial_number = message.get_serial_number
     end
-
   end
 end
 
