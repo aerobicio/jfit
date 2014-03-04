@@ -3,7 +3,7 @@ require 'vendor/fit.jar'
 
 module Jfit
   class File
-    attr_accessor :valid, :file_id
+    attr_accessor :valid, :file_id, :session
 
     def self.read(io)
       new.read(io)
@@ -18,8 +18,10 @@ module Jfit
         decode = Java::ComGarminFit::Decode.new
         message_broadcaster = Java::ComGarminFit::MesgBroadcaster.new(decode)
         @file_id = FileID.new
+        @session = Session.new
 
         message_broadcaster.add_listener(@file_id)
+        message_broadcaster.add_listener(@session)
         message_broadcaster.run(io.to_inputstream)
       end
 
@@ -53,5 +55,36 @@ class FileID
       @serial_number = message.get_serial_number
     end
 
+  end
+end
+
+
+class Session
+  include Java::ComGarminFit::SessionMesgListener
+
+  attr_accessor :total_timer_time, :total_distance
+  attr_accessor :total_elapsed_time, :timestamp, :start_time
+
+  java_signature 'void onMesg(Java::ComGarminFit::SessionMesg)'
+  def onMesg(message)
+    if !message.get_total_timer_time.nil? && message.get_total_timer_time != Java::ComGarminFit::Fit::UINT32_INVALID
+      @total_timer_time = message.get_total_timer_time
+    end
+
+    if !message.get_total_distance.nil? && message.get_total_distance != Java::ComGarminFit::Fit::UINT32_INVALID
+      @total_distance = message.get_total_distance
+    end
+
+    if !message.get_total_elapsed_time.nil? && message.get_total_elapsed_time != Java::ComGarminFit::Fit::UINT32_INVALID
+      @total_elapsed_time = message.get_total_elapsed_time
+    end
+
+    if !message.get_timestamp.nil? && message.get_timestamp != Java::ComGarminFit::DateTime::INVALID
+      @timestamp = message.get_timestamp
+    end
+
+    if !message.get_start_time.nil? && message.get_start_time != Java::ComGarminFit::DateTime::INVALID
+      @start_time = message.get_start_time
+    end
   end
 end

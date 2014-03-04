@@ -38,6 +38,30 @@ describe Jfit::File do
           subject.serial_number.must_equal(3877468399)
         end
       end
+
+      context "session" do
+        subject { Jfit::File.read(io).session }
+
+        it "must have a total_timer_time of 1567.35205078125" do
+          subject.total_timer_time.must_equal(1567.35205078125)
+        end
+
+        it "must have a total_distance of 5166.35009765625" do
+          subject.total_distance.must_equal(5166.35009765625)
+        end
+
+        it "must have a total_elapsed_time of 1569.741943359375" do
+          subject.total_elapsed_time.must_equal(1569.741943359375)
+        end
+
+        it "must have a timestamp of Sat Mar 01 16:33:17 EST 2014" do
+          subject.timestamp.to_s.must_equal('Sat Mar 01 16:33:17 EST 2014')
+        end
+
+        it "must have a start_time of Sat Mar 01 16:07:03 EST 2014" do
+          subject.start_time.to_s.must_equal('Sat Mar 01 16:07:03 EST 2014')
+        end
+      end
     end
   end
 end
