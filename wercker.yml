@@ -1,4 +1,4 @@
-box: tsungg/jruby@0.0.3
+box: tsungg/jruby@0.0.6
 build:
     steps:
         - bundle-install
