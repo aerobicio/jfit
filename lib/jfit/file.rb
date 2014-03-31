@@ -1,5 +1,6 @@
 require 'java'
 require 'vendor/fit.jar'
+require 'time'
 
 module Jfit
   class File
@@ -57,7 +58,6 @@ class FileID
   end
 end
 
-
 class Session
   include Java::ComGarminFit::SessionMesgListener
 
@@ -79,11 +79,16 @@ class Session
     end
 
     if !message.get_timestamp.nil? && message.get_timestamp != Java::ComGarminFit::DateTime::INVALID
-      @timestamp = message.get_timestamp
+
+      @timestamp = Time.at(fit_epoch + message.get_timestamp.get_timestamp).utc
     end
 
     if !message.get_start_time.nil? && message.get_start_time != Java::ComGarminFit::DateTime::INVALID
-      @start_time = message.get_start_time
+      @start_time = Time.at(fit_epoch + message.get_start_time.get_timestamp).utc
     end
+  end
+
+  def fit_epoch
+    @fit_epoch ||= Time.parse("1989-12-31 00:00:00 UTC").to_i
   end
 end

@@ -55,11 +55,11 @@ describe Jfit::File do
         end
 
         it "must have a timestamp of Sat Mar 01 16:33:17 EST 2014" do
-          subject.timestamp.to_s.must_equal('Sat Mar 01 16:33:17 EST 2014')
+          subject.timestamp.must_equal(Time.parse('2014-03-01 16:33:17 AEST').utc)
         end
 
         it "must have a start_time of Sat Mar 01 16:07:03 EST 2014" do
-          subject.start_time.to_s.must_equal('Sat Mar 01 16:07:03 EST 2014')
+          subject.start_time.must_equal(Time.parse('2014-03-01 16:07:03 AEST').utc)
         end
       end
     end
