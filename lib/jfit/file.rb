@@ -1,5 +1,5 @@
 require 'java'
-require 'vendor/fit.jar'
+require 'fit.jar'
 require 'time'
 
 module Jfit
