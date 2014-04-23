@@ -63,6 +63,7 @@ class Session
 
   attr_accessor :total_timer_time, :total_distance
   attr_accessor :total_elapsed_time, :timestamp, :start_time
+  attr_accessor :sport
 
   java_signature 'void onMesg(Java::ComGarminFit::SessionMesg)'
   def onMesg(message)
@@ -85,6 +86,10 @@ class Session
 
     if !message.get_start_time.nil? && message.get_start_time != Java::ComGarminFit::DateTime::INVALID
       @start_time = Time.at(fit_epoch + message.get_start_time.get_timestamp).utc
+    end
+
+    if !message.get_sport.nil? && message.get_sport != Java::comGarminFit::Sport::INVALID
+      @sport = message.get_sport.to_s
     end
   end
 
