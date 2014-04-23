@@ -61,6 +61,10 @@ describe Jfit::File do
         it "must have a start_time of Sat Mar 01 16:07:03 EST 2014" do
           subject.start_time.must_equal(Time.parse('2014-03-01 05:07:03 UTC'))
         end
+
+        it "must have a sport of RUNNING" do
+          subject.sport.must_equal('RUNNING')
+        end
       end
     end
   end
